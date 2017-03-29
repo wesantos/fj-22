@@ -12,6 +12,9 @@ public final class Candlestick {
 	private final Calendar data;
 
 	public Candlestick(double abertura, double fechamento, double minimo, double maximo, double volume, Calendar data) {
+		if (maximo < minimo) {
+			throw new IllegalArgumentException("Valor maximo nao pode ser menor que minimo");
+		}
 		this.abertura = abertura;
 		this.fechamento = fechamento;
 		this.minimo = minimo;
@@ -44,14 +47,19 @@ public final class Candlestick {
 		return data;
 	}
 
-	
-	
 	public boolean isAlta() {
 		return this.abertura < this.fechamento;
 
 	}
-	
+
 	public boolean isBaixa() {
 		return this.abertura > this.fechamento;
 	}
+
+	/*@Override
+	public String toString() {
+		return "Abertura: " + this.abertura + ", Fechamento: " + this.fechamento + 
+				", Minima: " + this.minimo + ", Maxima: " + this.maximo + ", Volume: " + this.volume + 
+				", Data: " + this.data;
+	} ex opcional 2.12 tentar dps*/
 }
